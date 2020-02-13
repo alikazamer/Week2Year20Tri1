@@ -4,10 +4,18 @@ using UnityEngine;
 
 /*
     Script: PlayerController
+    Author: Gareth Lockettusing System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+/*
+    Script: PlayerController
     Author: Gareth Lockett
     Version: 1.0
     Description: Simple player controller script. Use arrow keys to move and spacebar to jump.
 */
+
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,18 +33,23 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Check up and down keys to move forwards or backwards.
-        if (Input.GetKey(KeyCode.UpArrow) == true) { this.transform.position += this.transform.forward * Time.deltaTime * this.moveSpeed; }
-        if (Input.GetKey(KeyCode.DownArrow) == true) { this.transform.position -= this.transform.forward * Time.deltaTime * this.moveSpeed; }
+        if (Input.GetKey(KeyCode.UpArrow) == true)
+        { this.transform.position += this.transform.forward * Time.deltaTime * this.moveSpeed; }
+        if (Input.GetKey(KeyCode.DownArrow) == true)
+        { this.transform.position -= this.transform.forward * Time.deltaTime * this.moveSpeed; } // Moves Backwards
 
         // Check left and right keys to rotate left and right.
-        if (Input.GetKey(KeyCode.LeftArrow) == true) { this.transform.Rotate(this.transform.up, Time.deltaTime * -this.turnSpeed); }
-        if (Input.GetKey(KeyCode.RightArrow) == true) { this.transform.Rotate(this.transform.up, Time.deltaTime * this.turnSpeed); }
+        if (Input.GetKey(KeyCode.LeftArrow) == true)
+        { this.transform.Rotate(this.transform.up, Time.deltaTime * -this.turnSpeed); }
+        if (Input.GetKey(KeyCode.RightArrow) == true)
+        { this.transform.Rotate(this.transform.up, Time.deltaTime * this.turnSpeed); } // moves Clockwise
 
         // Check spacebar to trigger jumping. Checks if vertical velocity (eg velocity.y) is near to zero.
         if (Input.GetKey(KeyCode.Space) == true && Mathf.Abs(this.GetComponent<Rigidbody>().velocity.y) < 0.01f)
         {
             this.GetComponent<Rigidbody>().velocity += Vector3.up * this.jumpHeight;
         }
+
     }
 }
 
