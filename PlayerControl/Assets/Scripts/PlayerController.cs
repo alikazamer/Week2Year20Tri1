@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     public float turnSpeed = 60f;       // Rotating speed (degrees per second) when user holds down left or right arrow.
     public float jumpHeight = 5f;       // Upward velocity when user presses spacebar.
 
+    //[MenuItem("Camera")]
+    //public GameObject Camera;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,17 +35,42 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Check up and down keys to move forwards or backwards.
-        if (Input.GetKey(KeyCode.UpArrow) == true)
-        { this.transform.position += this.transform.forward * Time.deltaTime * this.moveSpeed; }
-        if (Input.GetKey(KeyCode.DownArrow) == true)
-        { this.transform.position -= this.transform.forward * Time.deltaTime * this.moveSpeed; } // Moves Backwards
+        //// Check up and down keys to move forwards or backwards.
+        //if (Input.GetKey(KeyCode.UpArrow) == true)
+        //{ this.transform.position += this.transform.forward * Time.deltaTime * this.moveSpeed; }
+        //if (Input.GetKey(KeyCode.DownArrow) == true)
+        //{ this.transform.position -= this.transform.forward * Time.deltaTime * this.moveSpeed; } // Moves Backwards
 
-        // Check left and right keys to rotate left and right.
-        if (Input.GetKey(KeyCode.LeftArrow) == true)
-        { this.transform.Rotate(this.transform.up, Time.deltaTime * -this.turnSpeed); }
-        if (Input.GetKey(KeyCode.RightArrow) == true)
-        { this.transform.Rotate(this.transform.up, Time.deltaTime * this.turnSpeed); } // moves Clockwise
+        //New Movement functions
+        // Check up and down keys to move forwards or backwards.
+        if (Input.GetKey(KeyCode.W) == true)
+        { this.transform.position += this.transform.forward * Time.deltaTime * this.moveSpeed; } // Forward
+        if (Input.GetKey(KeyCode.S) == true)
+        { this.transform.position -= this.transform.forward * Time.deltaTime * this.moveSpeed; } // Moves Backwards
+        if (Input.GetKey(KeyCode.D) == true)
+        { this.transform.position += this.transform.right * Time.deltaTime * this.moveSpeed; } // Move right
+        if (Input.GetKey(KeyCode.A) == true)
+        { this.transform.position -= this.transform.right * Time.deltaTime * this.moveSpeed; } // move left
+
+        //// Check left and right keys to rotate left and right.
+        //if (Input.GetKey(KeyCode.LeftArrow) == true)
+        //{ this.transform.Rotate(this.transform.up, Time.deltaTime * -this.turnSpeed); }
+        //if (Input.GetKey(KeyCode.RightArrow) == true)
+        //{ this.transform.Rotate(this.transform.up, Time.deltaTime * this.turnSpeed); } // moves Clockwise
+
+        // Adds mouse control
+        float mouseXValue = Input.GetAxis("Mouse X");
+        float mouseYValue = Input.GetAxis("Mouse Y");
+        if (mouseXValue != 0)
+        {
+            this.transform.Rotate(this.transform.up, mouseXValue);
+
+        }
+        if (mouseYValue != 0)
+        {
+            this.transform.Rotate(this.transform.right, mouseYValue);
+
+        }
 
         // Check spacebar to trigger jumping. Checks if vertical velocity (eg velocity.y) is near to zero.
         if (Input.GetKey(KeyCode.Space) == true && Mathf.Abs(this.GetComponent<Rigidbody>().velocity.y) < 0.01f)
