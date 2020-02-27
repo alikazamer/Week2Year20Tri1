@@ -889,9 +889,11 @@ GameObject:
   - component: {fileID: 1103977078}
   - component: {fileID: 1103977082}
   - component: {fileID: 1103977083}
+  - component: {fileID: 1103977084}
+  - component: {fileID: 1103977085}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -978,7 +980,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103977077}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 322c6942133a1bf4381ca4a12a84f8df, type: 3}
   m_Name: 
@@ -986,6 +988,7 @@ MonoBehaviour:
   moveSpeed: 5
   turnSpeed: 60
   jumpHeight: 5
+  camera: {fileID: 184072664}
 --- !u!114 &1103977083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -998,6 +1001,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623a89109be045346b9360568ee63400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &1103977084
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103977077}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1103977085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103977077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3598c5490286254eaf67a4a9b4ddc95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  body: {fileID: 1103977084}
+  moveSpeed: 1
+  turnSpeed: 45
+  jumpHeight: 1
+  currentMoveSpeed: 0
+  currentTurnSpeed: 0
+  currentJumpHeight: 0
+  xp: 0
+  xpForNextLevel: 10
+  level: 1
 --- !u!1001 &1196266236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1369,6 +1410,11 @@ PrefabInstance:
       propertyPath: moveDistance
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7082993782240799093, guid: 63e8ce90759b69442bc399eb9430a806,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63e8ce90759b69442bc399eb9430a806, type: 3}
 --- !u!1 &1603645943
@@ -1382,7 +1428,6 @@ GameObject:
   - component: {fileID: 1603645944}
   - component: {fileID: 1603645946}
   - component: {fileID: 1603645945}
-  - component: {fileID: 1603645947}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -1406,8 +1451,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -50, y: 0}
+  m_SizeDelta: {x: 480, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1603645945
 MonoBehaviour:
@@ -1429,18 +1474,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 1
+    m_MaxSize: 50
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Player has collected no coins :(
 --- !u!222 &1603645946
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1449,18 +1494,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1603645943}
   m_CullTransparentMesh: 0
---- !u!114 &1603645947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603645943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69be9e76ac3633f4fadf5364a1343943, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1666521835
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1725,6 +1758,11 @@ PrefabInstance:
         type: 3}
       propertyPath: axis
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7082993782240799093, guid: 63e8ce90759b69442bc399eb9430a806,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63e8ce90759b69442bc399eb9430a806, type: 3}

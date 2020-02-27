@@ -24,13 +24,14 @@ public class GameManager : MonoBehaviour
     // Methods
     private void Update()
     {
-        currentText = "Player has collected " + this.targetScore + " coins!";
+        currentText = "Player has collected " + score + " coins!";
         // Check the number of coins that have been collected.
+        UIText.text = currentText;
         if (GameManager.score == this.targetScore)
         {
             // Output that the number of target coins have been collected.
             Debug.Log(currentText);
-            UIText.text = currentText;
+            
             // Deactivate this GameManager component so that it stops checking the score each Update().
             this.gameObject.SetActive(false);
         }

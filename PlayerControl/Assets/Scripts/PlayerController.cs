@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;        // Distance moved (units per second) when user holds down up or down arrow.
     public float turnSpeed = 60f;       // Rotating speed (degrees per second) when user holds down left or right arrow.
     public float jumpHeight = 5f;       // Upward velocity when user presses spacebar.
-    
+    public Camera camera;
 
     //[MenuItem("Camera")]
     //public GameObject Camera;
@@ -35,6 +35,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        moveSpeed = 5f * GameManager.score;
+
+
         //// Check up and down keys to move forwards or backwards.
         //if (Input.GetKey(KeyCode.UpArrow) == true)
         //{ this.transform.position += this.transform.forward * Time.deltaTime * this.moveSpeed; }
@@ -61,8 +64,9 @@ public class PlayerController : MonoBehaviour
         // Adds mouse control
         float rotateHorizontal = Input.GetAxis("Mouse X");
         float rotateVertical = Input.GetAxis("Mouse Y");
-        transform.RotateAround(gameObject.transform.position, -Vector3.up, rotateHorizontal * 3f);
-        transform.RotateAround(Vector3.zero, transform.right, rotateVertical * 3f);
+        this.transform.Rotate(new Vector3(0, rotateHorizontal));
+        camera.transform.Rotate(new Vector3(0,rotateHorizontal));
+        camera.transform.Rotate(new Vector3 (- rotateVertical, 0) );
 
         // Check spacebar to trigger jumping. Checks if vertical velocity (eg velocity.y) is near to zero.
         if (Input.GetKey(KeyCode.Space) == true && Mathf.Abs(this.GetComponent<Rigidbody>().velocity.y) < 0.01f)

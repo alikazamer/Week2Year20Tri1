@@ -17,7 +17,7 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     public float spinSpeed = 100f;
-
+    public int XpValue = 10;
     void Update()
     {
         this.transform.Rotate(0f, 0f, Time.deltaTime * this.spinSpeed);
@@ -27,5 +27,10 @@ public class Coin : MonoBehaviour
     {
         Destroy(this.gameObject);
         GameManager.score += 1;
+        if (other.gameObject.tag == "Player")
+        {
+            other.GetComponent<PlayerControllerThatLevelsUp>().GainXP(XpValue);
+        }
+
     }
 }
