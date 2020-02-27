@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 7082993782240799098}
   - component: {fileID: 7082993782240799093}
   - component: {fileID: 7082993782240799092}
+  - component: {fileID: 2924174937519935857}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: MovingPlatformPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,3 +109,16 @@ MonoBehaviour:
   axis: 0
   moveDistance: 10
   moveSpeed: 1
+--- !u!65 &2924174937519935857
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7082993782240799095}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
