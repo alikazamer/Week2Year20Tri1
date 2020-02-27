@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;        // Distance moved (units per second) when user holds down up or down arrow.
     public float turnSpeed = 60f;       // Rotating speed (degrees per second) when user holds down left or right arrow.
     public float jumpHeight = 5f;       // Upward velocity when user presses spacebar.
+    
 
     //[MenuItem("Camera")]
     //public GameObject Camera;
@@ -29,7 +30,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -59,18 +59,10 @@ public class PlayerController : MonoBehaviour
         //{ this.transform.Rotate(this.transform.up, Time.deltaTime * this.turnSpeed); } // moves Clockwise
 
         // Adds mouse control
-        float mouseXValue = Input.GetAxis("Mouse X");
-        float mouseYValue = Input.GetAxis("Mouse Y");
-        if (mouseXValue != 0)
-        {
-            this.transform.Rotate(this.transform.up, mouseXValue);
-
-        }
-        if (mouseYValue != 0)
-        {
-            this.transform.Rotate(this.transform.right, mouseYValue);
-
-        }
+        float rotateHorizontal = Input.GetAxis("Mouse X");
+        float rotateVertical = Input.GetAxis("Mouse Y");
+        transform.RotateAround(gameObject.transform.position, -Vector3.up, rotateHorizontal * 3f);
+        transform.RotateAround(Vector3.zero, transform.right, rotateVertical * 3f);
 
         // Check spacebar to trigger jumping. Checks if vertical velocity (eg velocity.y) is near to zero.
         if (Input.GetKey(KeyCode.Space) == true && Mathf.Abs(this.GetComponent<Rigidbody>().velocity.y) < 0.01f)
