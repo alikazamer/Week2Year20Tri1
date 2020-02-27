@@ -105,7 +105,7 @@ public class PlayerControllerThatLevelsUp : MonoBehaviour
     void Update()
     {
         //Test the GainXp function by pressing the x button. 
-        if (Input.GetKeyDown(KeyCode.X) == true) { GainXP(10); }
+        //if (Input.GetKeyDown(KeyCode.X) == true) { GainXP(10); }
 
        
         //LevelUp when the appropriate conditions are met.
@@ -113,9 +113,6 @@ public class PlayerControllerThatLevelsUp : MonoBehaviour
         {
             LevelUp();
         }
-
-       
-
 
 
 
